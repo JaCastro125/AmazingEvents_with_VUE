@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="./Assets/images/reduccionlogo.ico" type="image/x-icon" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
+  <script src="https://kit.fontawesome.com/1b3f1ce9c6.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="./Assets/css/style.css" />
+  <title>Amazing Events</title>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img src="./Assets/images/Logo.png" alt="logo" width="150" height="24" class="img-fluid" />
+        </a>
+        <button class="navbar-toggler boton" type="button" data-bs-toggle="collapse" data-bs-target="#botonesdebarra"
+          aria-controls="botonesdebarra" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse menu1" id="botonesdebarra">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active btn botoncolor m-2 text-nowrap" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link btn m-2 text-nowrap" href="./pages/upcomingEvents.html">Upcoming Events</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link btn m-2 text-nowrap" href="./pages/pastEvents.html">Past Events</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link btn m-2 text-nowrap" href="./pages/contact.html">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link btn m-2 text-nowrap" href="./pages/stats.html">Stats</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container-fluid nav2 colorslider">
+      <div>
+        <a href="./pages/stats.html" class="previous round"><i class="fa-sharp fa-solid fa-less-than"></i></a>
+      </div>
+      <h2>HOME</h2>
+      <div>
+        <a href="./pages/upcomingEvents.html" class="next round"><i class="fa-sharp fa-solid fa-greater-than"></i></a>
+      </div>
+    </div>
+  </header>
+  <main>
+    <!-- inicializo Vue -->
+    <div id="appIndex">
+      <div class="container mt-3">
+        <nav class="navbar navbar-expand-lg degradadotop">
+          <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#checkboxes"
+              aria-controls="checkboxes" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse flex-column flex-wrap align-content-center" id="checkboxes">
+              <div class="navbar-nav me-auto mb-2 mb-lg-0">
+                <!-- utilizo v-for para hacer un recorrido por todas las categorias -->
+                <div v-for="categoria of categorias" class="form-check me-4">
+                  <!-- utilizo v-model para que categoriasSeleccionadas se comunique con vueIndex.js y recargue 
+                      los datos de la vble -->
+                  <input v-model="categoriasSeleccionadas" class="form-check-input" type="checkbox" :id="categoria"
+                    :value="categoria" />
+                  <label class="form-check-label" for="categoria">{{categoria}}</label>
+                </div>
+              </div>
+              <form class="d-flex pt-2 w-50" role="search">
+                <!-- utilizo v-model para que texto se comunique con vueIndex.js y recargue los datos de la vble -->
+                <input v-model="texto" class="form-control me-2" type="search" placeholder="Search"
+                  aria-label="Search" />
+              </form>
+              <!-- aplico la funcion superFiltro de Vue -->
+              {{superFiltro}}
+            </div>
+          </div>
+        </nav>
+      </div>
+      <div class="contanier mt-3 d-flex flex-wrap justify-content-around">
+        <!-- utilizo v-for para hacer un recorrido por todas las tarjetas -->
+        <div v-for="tarjeta of tarjetasAMostrar" class="contanier mt-3 card shadow p-3 bg-body-tertiary rounded"
+          style="width: 18rem">
+          <img :src="tarjeta.image" class="card-img-top cajafotos" alt="tarjeta.category" />
+          <div class="card-body d-flex flex-column justify-content-between flex-grow-1">
+            <p class="card-text"><strong>{{tarjeta.name}}</strong></p>
+            <p class="card-text">Description: {{tarjeta.description}}</p>
+            <p class="card-text">Category: {{tarjeta.category}}</p>
+            <p class="card-text">Place: {{tarjeta.place}}</p>
+            <div class="card-footer d-flex justify-content-center align-items-end mt-auto">
+              <a :href="'../pages/details.html?id='+ tarjeta._id" class="btn btn-primary">More Info</a>
+            </div>
+          </div>
+        </div>
+        <!-- utilizo v-if como condicionante para decir, que si no existe conicidencia con alguna busqueda, imprima por pantalla que no existen coincidencias -->
+        <p v-if="!tarjetasAMostrar.length" class="display-1 fw-bolder d-flex justify-content-center text-white">
+          Your search returned no results, please try again
+        </p>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <div>
+      <nav class="navbar p-3 m-3 degradadofooter">
+        <div>
+          <a class="navbar-brand" href="https://www.instagram.com">
+            <i class="fa-brands fa-instagram fa-2x"></i>
+          </a>
+          <a class="navbar-brand" href="https://www.facebook.com">
+            <i class="fa-brands fa-facebook fa-2x"></i>
+          </a>
+          <a class="navbar-brand" href="https://wa.link/pdpf4b">
+            <i class="fa-brands fa-whatsapp fa-2x"></i>
+          </a>
+        </div>
+        <div>
+          <h2>Cohort</h2>
+        </div>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script type="module" src="./Assets/scripts/vueIndex.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../Assets/images/reduccionlogo.ico" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/1b3f1ce9c6.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../Assets/css/style.css">
+    <title>Amazing Events</title>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src="../Assets/images/Logo.png" alt="logo" width="150" height="24" class="img-fluid">
+                </a>
+                <button class="navbar-toggler boton" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#botonesdebarra" aria-controls="botonesdebarra" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse menu1" id="botonesdebarra">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link btn m-2 text-nowrap" aria-current="page" href="../index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn m-2 text-nowrap" href="../pages/upcomingEvents.html">Upcoming
+                                Events</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn m-2 text-nowrap" href="../pages/pastEvents.html">Past Events</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn m-2 text-nowrap" href="../pages/contact.html">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active btn m-2 text-nowrap" href="#">Stats</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container-fluid nav2 colorslider">
+            <div><a href="../pages/contact.html" class="previous round"><i
+                        class="fa-sharp fa-solid fa-less-than"></i></a>
+            </div>
+            <h2>STATS</h2>
+            <div><a href="../index.html" class="next round"><i class="fa-sharp fa-solid fa-greater-than"></i></a>
+            </div>
+        </div>
+    </header>
+    <main>
+        <!-- inicializo Vue -->
+        <div id="appIndex">
+            <div class="container">
+                <table class="table table-bordered m-2 colorbordetabla">
+                    <thead>
+                        <tr class="titulotabla">
+                            <th colspan=3>Events statics</th>
+                        </tr>
+                        <tr>
+                            <th>Events with highest percentage of attendance</th>
+                            <th>Events with the lowest percentage of attendance</th>
+                            <th>Event with larger capacity</th>
+                        </tr>
+                        <tr>
+                            <!-- en las siguientes 2 lineas de llama a cada celda mediante su id r1, r2 y r3 -->
+                            <td> {{eventoConMayorAsistencia}}</td>
+                            <td> {{eventoConMenorAsistencia}}</td>
+                            <td> {{eventoConMayorCapacidad}}</td>
+                        </tr>
+                    </thead>
+                    <tr class="titulotabla">
+                        <th colspan=3>Upcoming events statics by category</th>
+                    </tr>
+                    <tr>
+                        <th>Categories</th>
+                        <th>Revenues</th>
+                        <th>Percentage of attendance</th>
+                    </tr>
+                    <tbody>
+                        <!-- aca va la tabla de estadisticas del evento futuro con el llamado a statsUpcoming-->
+                        <tr v-for="(categoria, index) in categorysFuturas" :key="index">
+                            <td>{{ categoria }}</td>
+                            <td>$ {{ gananciasFuturas[categoria].toFixed(2) }}</td>
+                            <td>{{ porcentajesFuturas[categoria].toFixed(2) }}%</td>
+                        </tr>
+                    </tbody>
+                    <tr class="titulotabla">
+                        <th colspan=3>Past events statics by category</th>
+                    </tr>
+                    <tr>
+                        <th>Categories</th>
+                        <th>Revenues</th>
+                        <th>Percentage of attendance</th>
+                    </tr>
+                    <tfoot>
+                        <!-- aca va la tabla de estadisticas del evento pasado con el llamado a 
+                            statsPassEvents y utilizo la key index para buscar categoria como propiedad y traer esos datos-->
+                        <tr v-for="(categoria, index) in categorysPasadas" :key="index">
+                            <td>{{ categoria }}</td>
+                            <td>$ {{ gananciasPasadas[categoria].toFixed(2) }}</td>
+                            <td>{{ porcentajesPasadas[categoria].toFixed(2) }}%</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div>
+            <nav class="navbar degradadofooter p-3 m-3">
+                <div>
+                    <a class="navbar-brand" href="https://www.instagram.com">
+                        <i class="fa-brands fa-instagram fa-2x"></i>
+                    </a>
+                    <a class="navbar-brand" href="https://www.facebook.com">
+                        <i class="fa-brands fa-facebook fa-2x"></i>
+                    </a>
+                    <a class="navbar-brand" href="https://wa.link/pdpf4b">
+                        <i class="fa-brands fa-whatsapp fa-2x"></i>
+                    </a>
+                </div>
+                <div>
+                    <h2>Cohort</h2>
+                </div>
+            </nav>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script type="module" src="../Assets/scripts/vueIndex.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="../Assets/images/reduccionlogo.ico" type="image/x-icon" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
+    <script src="https://kit.fontawesome.com/1b3f1ce9c6.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../Assets/css/style.css" />
+    <title>Amazing Events</title>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src="../Assets/images/Logo.png" alt="logo" width="150" height="24" class="img-fluid" />
+                </a>
+                <button class="navbar-toggler boton" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#botonesdebarra" aria-controls="botonesdebarra" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse menu1" id="botonesdebarra">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link btn m-2 text-nowrap" aria-current="page" href="../index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn m-2 text-nowrap" href="../pages/upcomingEvents.html">Upcoming
+                                Events</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn m-2 text-nowrap" href="../pages/pastEvents.html">Past Events</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn m-2 text-nowrap" href="../pages/contact.html">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn m-2 text-nowrap" href="../pages/stats.html">Stats</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div id="appIndex">
+            <div id="container" class="container d-flex flex-wrap justify-content-center">
+                <!-- aca va la tabla por info de las tarjetas con el llamado a container-->
+                <div class="card mt-3 p-3">
+                    <div class="row">
+                        <div class="col-3 d-flex flex-wrap align-content-around justify-content-center">
+                            <img :src="tarjetaInfo.image" class="img-fluid" alt="tarjetaInfo.name" />
+                            <a class="btn btn-primary d-flex justify-content-center" href="../index.html"
+                                role="button">Back</a>
+                        </div>
+                        <div class="col-9">
+                            <div class="card-body">
+                                <h5 class="card-title">{{tarjetaInfo.name}}</h5>
+                                <table class="table table-bordered m-2">
+                                    <tr>
+                                        <td>Name</td>
+                                        <td>{{tarjetaInfo.name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Date</td>
+                                        <td>{{tarjetaInfo.date}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Description</td>
+                                        <td>{{tarjetaInfo.description}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Category</td>
+                                        <td>{{tarjetaInfo.category}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Place</td>
+                                        <td>{{tarjetaInfo.place}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Capacity</td>
+                                        <td>{{tarjetaInfo.capacity}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Assistance or Estimate</td>
+                                        <td>{{tarjetaInfo.assistance || tarjetaInfo.estimate}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Price</td>
+                                        <td>{{tarjetaInfo.price}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div>
+            <nav class="navbar degradadofooter p-3 m-3">
+                <div>
+                    <a class="navbar-brand" href="https://www.instagram.com">
+                        <i class="fa-brands fa-instagram fa-2x"></i>
+                    </a>
+                    <a class="navbar-brand" href="https://www.facebook.com">
+                        <i class="fa-brands fa-facebook fa-2x"></i>
+                    </a>
+                    <a class="navbar-brand" href="https://wa.link/pdpf4b">
+                        <i class="fa-brands fa-whatsapp fa-2x"></i>
+                    </a>
+                </div>
+                <div>
+                    <h2>Cohort</h2>
+                </div>
+            </nav>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script type="module" src="../Assets/scripts/vueIndex.js"></script>
+</body>
+
+</html>
